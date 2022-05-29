@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono&display=swap" rel="stylesheet">
-
+    <link rel="icon" type="image/ico" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="styles.css">
 
     <script>
@@ -19,7 +19,6 @@
             if (result.trim().length === 0) {
                 return;
             }
-
 
             result = result.replaceAll('sh:', '');
 
@@ -32,6 +31,8 @@
             result = result.replaceAll('ö', 'oe');
             result = result.replaceAll('ü', 'ue');
             result = result.replaceAll('ß', 'ss');
+
+            result = result.replace(/[^a-zA-Z0-9-_]/g, '');
 
             result = 'feature/sh/' + result;
 
@@ -69,9 +70,9 @@
 
         function showAlert(exitCode) {
             const alert = document.createElement("div");
-            alert.classList.add("invisible", "alert", "inline-block");
-            alert.classList.add(exitCode);
-            alert.innerHTML = exitCode === "success" ? "✔ copied to clipboard" : "❌ copy failed";
+            alert.classList.add("invisible", "alert");
+            alert.classList.add(exitCode === 0 ? "success" : "error");
+            alert.innerHTML = exitCode === 0 ? "✔ copied to clipboard" : "❌ copy failed";
 
             document.body.insertAdjacentElement("afterbegin", alert);
             alert.classList.remove("invisible");
