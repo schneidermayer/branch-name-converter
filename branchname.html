@@ -14,9 +14,9 @@
 
     <script>
         function convert(that) {
-            let result = that.value;
+            let result = that.value.trim();
 
-            if (result.trim().length === 0) {
+            if (result.length === 0) {
                 return;
             }
 
@@ -37,8 +37,11 @@
             result = 'feature/sh/' + result;
 
             document.getElementById('output').value = result;
+        }
 
-            const exitCode = copyToClipboard(result);
+        function triggerCopy() {
+            const content = document.getElementById('output').value;
+            const exitCode = copyToClipboard(content);
             showAlert(exitCode, showAlert);
         }
 
@@ -76,8 +79,8 @@
 
             document.body.insertAdjacentElement("afterbegin", alert);
             alert.classList.remove("invisible");
-            // setTimeout(() => alert.classList.add("invisible"), 2000);
-            // setTimeout(() => alert.remove(), 3000);
+            setTimeout(() => alert.classList.add("invisible"), 2000);
+            setTimeout(() => alert.remove(), 3000);
         }
 
         function reset() {
@@ -88,7 +91,7 @@
 </head>
 <body>
     <label for="input">Branch Name:</label>
-    <textarea id="input" rows="3" onclick="select()" onchange="convert(this);"></textarea>
+    <textarea id="input" rows="3" onclick="select()" onkeyup="convert(this);" onchange="triggerCopy()"></textarea>
 
     <p>&nbsp;</p>
 
