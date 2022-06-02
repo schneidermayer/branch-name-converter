@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 
     <script>
+
+
         function convert(that) {
             let result = that.value.trim();
 
@@ -37,6 +39,9 @@
             result = 'feature/sh/' + result;
 
             document.getElementById('output').value = result;
+
+            window.localStorage.setItem('lastInput', that.value.trim());
+            window.localStorage.setItem('lastOutput', result);
         }
 
         function triggerCopy() {
@@ -87,6 +92,12 @@
             document.getElementById('input').value = '';
             document.getElementById('output').value = '';
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('input').value = window.localStorage.getItem('lastInput');
+            document.getElementById('output').value = window.localStorage.getItem('lastOutput');
+        });
+
     </script>
 </head>
 <body>

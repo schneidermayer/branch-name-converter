@@ -8,7 +8,10 @@ body {
     display: table-cell;
     padding: 2em;
     font-family: 'Spline Sans Mono', monospace;
-    background: #d9d9d9;
+    background: #313131;
+}
+label {
+    color: #8b8b8b;
 }
 label, textarea {
     display: block;
@@ -18,6 +21,9 @@ label, textarea {
 textarea {
     width: 100%;
     font-family: 'Spline Sans Mono', monospace;
+    color: #ccc;
+    padding: 1em;
+    background-color:  #262626;
 }
 .alert {
     position: absolute;
